@@ -1,11 +1,15 @@
 <script>
+    import ProjectsList from './components/ProjectsList.vue';
+    
     export default{
-
+        components: {
+            ProjectsList
+        }
     }
 </script>
 
 <template>
-    <h1>ciao sono app vue</h1>
+    <ProjectsList></ProjectsList>
 </template>
 
 <style lang="scss">
