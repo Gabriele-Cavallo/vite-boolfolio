@@ -1,19 +1,22 @@
 <script>
     import axios from 'axios';
+    import SingleProjectCard from './SingleProjectCard.vue';
 
     export default {
         name: 'ProjectsList',
-        components: '',
+        components: {
+            SingleProjectCard
+        },
         data() {
             return {
-
+                projects: [],
             }
         },
         methods: {
             getAllProjects(){
                 axios.get('http://127.0.0.1:8000/api/projects')
                 .then((response) => {
-                    console.log('axios' , response.data.results);
+                    this.projects = response.data.results;
                 })
             }
         },
@@ -25,7 +28,12 @@
 </script>
 
 <template>
-    <h1>ProjectsList</h1>
+    <div class="container">
+        <h1>Projects List</h1>
+        <div class="row row-cols-3">
+            <SingleProjectCard v-for="project in projects" :projectInfo="project" :key="project.id"></SingleProjectCard>
+        </div>
+    </div>
 </template>
 
 <style scoped lang="scss">
