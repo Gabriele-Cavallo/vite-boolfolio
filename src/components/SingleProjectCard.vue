@@ -26,7 +26,7 @@
                 <p v-if="projectInfo.technologies.length > 0" class="card-text"><strong>Technologies</strong>: 
                     <span v-for="technologies in projectInfo.technologies">{{ technologies.name }} &nbsp;</span>
                 </p>
-                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                <router-link :to="{ name: 'single-project', params: { slug: projectInfo.slug } }" class="btn btn-primary">View More</router-link>
             </div>
         </div>
     </div>
