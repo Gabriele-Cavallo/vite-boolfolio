@@ -1,6 +1,6 @@
 <script>
     import axios from 'axios';
-    import SingleProjectCard from './SingleProjectCard.vue';
+    import SingleProjectCard from '../components/SingleProjectCard.vue';
 
     export default {
         name: 'ProjectsList',
