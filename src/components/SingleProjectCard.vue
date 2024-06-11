@@ -9,7 +9,12 @@
             }
         },
         methods: {
-
+            cardText(text){
+                if (text.length > 100) {
+                    return text.substr(0, 99) + ' ...';
+                }
+                return text;
+            }
         }
     }
 </script>
@@ -21,7 +26,7 @@
             <div class="card-body">
                 <h5 class="card-title">Project: {{ projectInfo.name }}</h5>
                 <p class="card-text"><strong>Client name</strong>: {{ projectInfo.client_name }}</p>
-                <p class="card-text"><strong>Summary</strong>: {{ projectInfo.summary }}</p>
+                <p class="card-text"><strong>Summary</strong>: {{ cardText(projectInfo.summary) }}</p>
                 <p v-if="projectInfo.type" class="card-text"><strong>Type</strong>: {{ projectInfo.type.name }}</p>
                 <p v-if="projectInfo.technologies.length > 0" class="card-text"><strong>Technologies</strong>: 
                     <span v-for="technologies in projectInfo.technologies">{{ technologies.name }} &nbsp;</span>
