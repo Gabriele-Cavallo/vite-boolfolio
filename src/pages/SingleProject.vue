@@ -1,13 +1,19 @@
 <script>
     import axios from 'axios';
     import { store } from '../store.js';
+    import Loader from '../components/Loader.vue';
+
 
     export default{
         name: 'SingleProject',
+        components: {
+            Loader
+        },
         data(){
             return{
                 project: null,
                 store,
+                loading:false,
             };
         },
         methods: {
@@ -16,6 +22,7 @@
                 .then((response) => {
                     if(response.data.success) {
                         this.project = response.data.project;
+                        this.loading = true;
                     } else {
                         this.$router.push ({name: 'not-found'});
                     }
@@ -30,6 +37,7 @@
 
 <template>
     <div class="container">
+        <Loader v-if="!loading"></Loader>
         <div v-if="project">
             <h5 class="card-title my-2"><strong>Project</strong>: {{ project.name }}</h5>
             <img v-if="project.cover_image" :src="`http://127.0.0.1:8000/storage/${project.cover_image}`" :alt="project.name">

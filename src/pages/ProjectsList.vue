@@ -2,11 +2,13 @@
     import axios from 'axios';
     import { store } from '../store.js';
     import SingleProjectCard from '../components/SingleProjectCard.vue';
+    import Loader from '../components/Loader.vue';
 
     export default {
         name: 'ProjectsList',
         components: {
-            SingleProjectCard
+            SingleProjectCard,
+            Loader
         },
         data() {
             return {
@@ -15,6 +17,7 @@
                 previousPageUrl: null,
                 nextPageUrl: null,
                 store,
+                loading:false,
             }
         },
         methods: {
@@ -29,6 +32,7 @@
                     this.activePage = response.data.results.current_page;
                     this.previousPageUrl = response.data.results.prev_page_url;
                     this.nextPageUrl = response.data.results.next_page_url;
+                    this.loading = true;
                 })
             },
             firstPage(){
@@ -61,6 +65,7 @@
     <div class="container">
         <h1>Projects List</h1>
         {{ activePage }}
+        <Loader v-if="!loading"></Loader>
         <div class="row row-cols-3">
             <SingleProjectCard v-for="project in projects" :projectInfo="project" :key="project.id"></SingleProjectCard>
         </div>
