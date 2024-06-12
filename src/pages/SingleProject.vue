@@ -1,18 +1,24 @@
 <script>
     import axios from 'axios';
+    import { store } from '../store.js';
 
     export default{
         name: 'SingleProject',
         data(){
             return{
                 project: null,
+                store,
             };
         },
         methods: {
             getSingleProject(){
-                axios.get(`http://127.0.0.1:8000/api/projects/${this.$route.params.slug}`)
+                axios.get(`${this.store.apiUrl}/api/projects/${this.$route.params.slug}`)
                 .then((response) => {
-                    this.project = response.data.project;
+                    if(response.data.success) {
+                        this.project = response.data.project;
+                    } else {
+                        this.$router.push ({name: 'not-found'});
+                    }
                 });
             }
         },
@@ -31,7 +37,7 @@
             <p class="card-text"><strong>Summary</strong>: {{ project.summary }}</p>
             <p v-if="project.type" class="card-text"><strong>Type</strong>: {{ project.type.name }}</p>
             <p v-if="project.technologies.length > 0" class="card-text"><strong>Technologies</strong>: 
-                <span v-for="technologies in project.technologies">{{ technologies.name }} &nbsp;</span>
+                <span v-for="technology in project.technologies">{{ technology.name }} &nbsp;</span>
             </p>
             <router-link class="nav-link active btn btn-primary" aria-current="page" :to="{ name: 'projects'}">Return</router-link>
         </div>

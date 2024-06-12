@@ -29,7 +29,7 @@
                 <p class="card-text"><strong>Summary</strong>: {{ cardText(projectInfo.summary) }}</p>
                 <p v-if="projectInfo.type" class="card-text"><strong>Type</strong>: {{ projectInfo.type.name }}</p>
                 <p v-if="projectInfo.technologies.length > 0" class="card-text"><strong>Technologies</strong>: 
-                    <span v-for="technologies in projectInfo.technologies">{{ technologies.name }} &nbsp;</span>
+                    <span v-for="technology in projectInfo.technologies">{{ technology.name }} &nbsp;</span>
                 </p>
                 <router-link :to="{ name: 'single-project', params: { slug: projectInfo.slug } }" class="btn btn-primary">View More</router-link>
             </div>
