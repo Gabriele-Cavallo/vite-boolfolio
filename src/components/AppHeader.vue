@@ -1,6 +1,28 @@
 <script>
     export default{
-        name: 'AppHeader'
+        name: 'AppHeader',
+        data() {
+            return {
+                navLinks : [
+                    {
+                        label: 'Home',
+                        route: 'home',
+                    },
+                    {
+                        label: 'Abouts Us',
+                        route: 'about',
+                    },
+                    {
+                        label: 'Projects',
+                        route: 'projects',
+                    },
+                    {
+                        label: 'Contact Us',
+                        route: 'contact-us',
+                    },
+                ]
+            }
+        }
     }
 </script>
 
@@ -14,15 +36,11 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <router-link class="nav-link active" aria-current="page" :to="{ name: 'home'}">Home</router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link class="nav-link active" aria-current="page" :to="{ name: 'about'}">Abouts Us</router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link class="nav-link active" aria-current="page" :to="{ name: 'projects'}">Projects</router-link>
-                        </li>
+                        <div v-for="link in navLinks">
+                            <li class="nav-item">
+                                <router-link class="nav-link active" aria-current="page" :to="{ name: link.route }">{{ link.label }}</router-link>
+                            </li>
+                        </div>
                     </ul>
                 </div>
             </div>
