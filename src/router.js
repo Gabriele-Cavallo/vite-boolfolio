@@ -5,6 +5,7 @@ import ProjectsList from './pages/ProjectsList.vue';
 import SingleProject from './pages/SingleProject.vue';
 import NotFound from './pages/NotFound.vue';
 import AppContactUs from './pages/AppContactUs.vue';
+import AppTermsAndConditions from './pages/AppTermsAndConditions.vue';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -33,6 +34,11 @@ const router = createRouter({
         path: '/contact-us',
         name: 'contact-us',
         component: AppContactUs
+        },
+        {
+        path: '/terms-and-conditions',
+        name: 'terms-and-conditions',
+        component: AppTermsAndConditions
         },
         {
         path: '/:pathMatch(.*)*',

@@ -9,6 +9,7 @@
                 userName: '',
                 userEmail: '',
                 userMessage: '',
+                userTC: '',
                 errors: {},
                 success: null,
                 loading: false,
@@ -21,6 +22,7 @@
                     name: this.userName,
                     email: this.userEmail,
                     message: this.userMessage,
+                    accepted_tc: this.userTC
                 };
 
                 this.loading = true;
@@ -33,6 +35,7 @@
                         this.userName = '';
                         this.userEmail = '';
                         this.userMessage = '';
+                        this.userTC = '';
                     } else {
                         this.errors = response.data.errors;
                     }
@@ -77,6 +80,16 @@
             </div>
             <div v-if="errors.message">
                 <div v-for="error in errors.message" class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            </div>
+
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="accepted_tc" v-model="userTC">
+                <label class="form-check-label" for="accepted_tc">Accept terms and conditions. <router-link :to="{name: 'terms-and-conditions'}" target="_blank">Show terms and conditions</router-link></label>
+            </div>
+            <div v-if="errors.accepted_tc">
+                <div v-for="error in errors.accepted_tc" class="alert alert-danger" role="alert">
                     {{ error }}
                 </div>
             </div>
